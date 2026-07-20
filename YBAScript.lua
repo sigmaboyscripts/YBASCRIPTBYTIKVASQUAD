@@ -360,8 +360,8 @@ GodBtn.MouseButton1Click:Connect(function()
         local c = RunService.Heartbeat:Connect(function()
             local char = LocalPlayer.Character
        
-		_G.Stun = stun
-			char:SetAttribute("TRADING", _G.Stun)
+		--_G.Stun = char:SetAttribute("TRADING", false)
+			--char:SetAttribute("TRADING", _G.Stun)
 		
 						  
             
@@ -397,11 +397,11 @@ EnabledPilot = not EnabledPilot
         if player == LocalPlayer and player.Character then
 		local char = player.Character
 		local stand = char:FindFirstChild("StandMorph")
-		local root = stand.LowerTorso.Root
-	
-	
-		root:Destroy()
-		print(stand)
+	--	local root = stand.LowerTorso.Root
+ 
+
+	--	root:Destroy()
+		--print(stand)
 		StandControl.Text = "StandControl: ON"
 		
 		EnabledPilot = true
