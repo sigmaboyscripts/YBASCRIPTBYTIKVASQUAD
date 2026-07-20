@@ -359,14 +359,12 @@ GodBtn.MouseButton1Click:Connect(function()
         GodBtn.TextColor3 = Color3.fromRGB(100, 255, 100)
         local c = RunService.Heartbeat:Connect(function()
             local char = LocalPlayer.Character
-            if char then
-                for _, part in ipairs(char:GetDescendants()()) do
-                    if part:IsA("Part") then
-                        part.CanTouch = false
+       
+		_G.Stun = stun
+			char:SetAttribute("TRADING", _G.Stun)
+		
 						  
-                    end
-                end
-            end
+            
         end)
         table.insert(godConnections, c)
     elseif godModeState == 3 then
