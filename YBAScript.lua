@@ -398,13 +398,10 @@ EnabledPilot = not EnabledPilot
 		local char = player.Character
 		local stand = char:FindFirstChild("StandMorph")
 	--	local root = stand.LowerTorso.Root
- 
+  --Ð² Overrides physics to maintain speed
 
-	--	root:Destroy()
-		--print(stand)
-	--	local mt = require(game.ReplicatedStorage.Modules.FunctionLibrary)
-	
---fireproximityprompt(game.Workspace.Item_Spawns.Items:GetChildren()[9].ProximityPrompt, 2)
+
+
 	
 		
 	
@@ -413,9 +410,23 @@ EnabledPilot = not EnabledPilot
 		
 		EnabledPilot = true
         StandControl.TextColor3 = Color3.fromRGB(245, 245, 245)
-	
+--game:GetService("RunService").RenderStepped:Connect(function()
+--game.workspace.Camera.CameraSubject = stand.UpperTorso
+
+--end)
+	while EnabledPilot == true do
+	--game:GetService("RunService").RenderStepped:Connect(function()
+	local vel = Instance.new("BodyVelocity")
+ vel.Parent = stand.HumanoidRootPart
+ vel.Velocity = stand.HumanoidRootPart.CFrame.LookVector * 45  -- Moves the part up at 20 studs per second
+vel.MaxForce = Vector3.new(math.huge, math.huge, math.huge)
+
+
+
+		  wait(.001)
+    vel:Destroy()
 		end
-		
+		end
 		
 end
 	
