@@ -402,6 +402,13 @@ EnabledPilot = not EnabledPilot
 
 	--	root:Destroy()
 		--print(stand)
+	--	local mt = require(game.ReplicatedStorage.Modules.FunctionLibrary)
+	
+--fireproximityprompt(game.Workspace.Item_Spawns.Items:GetChildren()[9].ProximityPrompt, 2)
+	
+		
+	
+
 		StandControl.Text = "StandControl: ON"
 		
 		EnabledPilot = true
