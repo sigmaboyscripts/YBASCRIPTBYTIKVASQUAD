@@ -381,6 +381,8 @@ local StandControl = Instance.new("TextButton")
 StandControl.Parent = Tabs.Main
 styleFunctionalButton(StandControl, "StandControl: OFF", UDim2.new(0, 150, 0, 38), UDim2.new(0, 10, 0, 70))
 local EnabledPilot = false
+local hum =  Instance.new("Humanoid")
+--local hum2 = Instance.new("Humanoid")
 
 StandControl.MouseButton1Click:Connect(function()
 
@@ -389,6 +391,8 @@ EnabledPilot = not EnabledPilot
        
         StandControl.Text = "StandControl: OFF"
 		EnabledPilot = false
+	--	hum2:Destroy()
+	hum.Parent = game.Players.LocalPlayer.Character
         StandControl.TextColor3 = Color3.fromRGB(245, 245, 245)
         return
     end
@@ -398,29 +402,35 @@ EnabledPilot = not EnabledPilot
 		local char = player.Character
 		local stand = char:FindFirstChild("StandMorph")
 	--	local root = stand.LowerTorso.Root
-  --Ð² Overrides physics to maintain speed
+  
 
 
 
 	
 		
-	
+	hum.Parent = stand
 
 		StandControl.Text = "StandControl: ON"
 		
 		EnabledPilot = true
         StandControl.TextColor3 = Color3.fromRGB(245, 245, 245)
+		
+
+		
+	---if stand ~= nil then	
 --game:GetService("RunService").RenderStepped:Connect(function()
---game.workspace.Camera.CameraSubject = stand.UpperTorso
+--game.workspace.Camera.CameraSubject = stand.AnimationController
 
 --end)
+--end
 	while EnabledPilot == true do
-	--game:GetService("RunService").RenderStepped:Connect(function()
+
 	local vel = Instance.new("BodyVelocity")
  vel.Parent = stand.HumanoidRootPart
  vel.Velocity = stand.HumanoidRootPart.CFrame.LookVector * 45  -- Moves the part up at 20 studs per second
 vel.MaxForce = Vector3.new(math.huge, math.huge, math.huge)
 
+--humPlacehold.Parent = char
 
 
 		  wait(.001)
