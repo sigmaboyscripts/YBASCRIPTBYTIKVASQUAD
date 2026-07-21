@@ -173,21 +173,43 @@ ItemNotifier.MouseButton1Click:Connect(function()
     ItemNotifier.Text = "ItemNotifier: ON"
     ItemNotifier.TextColor3 = Color3.fromRGB(100, 255, 100)
 	 ItemNotifierActive = true
-	  for i, v in ipairs(game.workspace.Item_Spawns.Items:GetDescendants()) do
+
+	 
+while ItemNotifierActive == true do
+	 for i, v in ipairs(game.workspace.Item_Spawns.Items:GetDescendants()) do
 		 if v:IsA("Model") then
 		 if v.Parent == game.workspace.Dialogues then return end
-			 
-		 
+	
+			 if v:IsA("BillboardGui") then
+		v:Destroy()
+		 end
 			 local hint = game:GetService("ReplicatedStorage").Objects.ItemHint:Clone()
 			  local hint2 = game:GetService("ReplicatedStorage").Objects.ItemHint2:Clone()
 hint.Parent = v
-hint.Size = UDim2.new(0, 350, 0, 350)
+ 
+hint.Size = UDim2.new(0, 150, 0, 150)
 hint2.Parent = v
 hint2.TextLabel.Text = v.ProximityPrompt.ObjectText
 
+  local tween1 = game:GetService("TweenService"):Create(hint, TweenInfo.new(1, Enum.EasingStyle.Linear, Enum.EasingDirection.In), {Size = UDim2.new(0, 550, 0, 550)})
+     local tween = game:GetService("TweenService"):Create(hint.ImageLabel, TweenInfo.new(1, Enum.EasingStyle.Linear, Enum.EasingDirection.Out), {ImageTransparency = 1})
+	tween1:Play()
+	tween:Play()
+
+	wait(1)
+
+hint2:Destroy()
+
+		
 		 end
+		 
 	 end
+
+	 end
+	 	
 	end)
+
+	
 -- ==========================================
 -- ТАБ: MAIN (PLAYER ESP)
 -- ==========================================
