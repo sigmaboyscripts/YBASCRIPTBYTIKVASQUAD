@@ -150,8 +150,73 @@ local UserInputService = game:GetService("UserInputService")
 local RunService = game:GetService("RunService")
 local Players = game:GetService("Players")
 local LocalPlayer = Players.LocalPlayer
+local Fly = Instance.new("TextButton")
+local FlyEnabled = false
+Fly.Parent = Tabs.Main
+styleFunctionalButton(Fly, "Fly: OFF", UDim2.new(0, 150, 0, 38), UDim2.new(0, 180, 0, 70))
+local FlyEnabled = false
+local function toggleFly()
+    FlyEnabled = not FlyEnabled
+    local character = LocalPlayer.Character
+    if FlyEnabled then
+        Fly.Text = "Fly: ON"
+        Fly.TextColor3 = Color3.fromRGB(100, 255, 100)
+    else
+        Fly.Text = "Fly: OFF"
+        Fly.TextColor3 = Color3.fromRGB(255, 100, 100)
+       
+    end
+end
+UserInputService.InputBegan:Connect(function(input, gp)
+    if not gp and input.KeyCode == Enum.KeyCode.V then toggleFly()
+	while FlyEnabled == true do
+	
+local bv = Instance.new("BodyVelocity")
+bv.Velocity = game.workspace.Camera.CFrame.LookVector * 165  -- Moves the part up at 20 studs per second
+bv.MaxForce = Vector3.new(math.huge, math.huge, math.huge) --Ð² Overrides physics to maintain speed
+bv.Parent = game.Players.LocalPlayer.Character.HumanoidRootPart
+	
+wait(.2)
+bv:Destroy()
 
+		 
+	
 
+		
+		 
+		 
+	 
+
+	 end
+	
+	 end
+end)
+Fly.MouseButton1Click:Connect(function()
+    toggleFly()
+while FlyEnabled == true do
+	
+local bv = Instance.new("BodyVelocity")
+bv.Velocity = game.workspace.Camera.CFrame.LookVector * 165  -- Moves the part up at 20 studs per second
+bv.MaxForce = Vector3.new(math.huge, math.huge, math.huge) --Ð² Overrides physics to maintain speed
+bv.Parent = game.Players.LocalPlayer.Character.HumanoidRootPart
+	
+wait(.2)
+bv:Destroy()
+
+		 
+	
+
+		
+		 
+		 
+	 
+
+	 end
+	 
+
+	 	
+	end)
+	
 local ItemNotifier = Instance.new("TextButton")
 ItemNotifier.Parent = Tabs.Main
 styleFunctionalButton(ItemNotifier, "ItemNotifier: OFF", UDim2.new(0, 150, 0, 38), UDim2.new(0, 180, 0, 10))
@@ -183,6 +248,15 @@ while ItemNotifierActive == true do
 			 if v:IsA("BillboardGui") then
 		v:Destroy()
 		 end
+		
+		 if v.ProximityPrompt.ObjectText == "Lucky Arrow" then
+			  
+local Message = game:GetService("ReplicatedStorage").Objects.RareItemNotifier:Clone()
+Message.Parent = LocalPlayer.PlayerGui
+Message.Frame.Message.Text = "A Lucky Arrow has spawned!"
+		 end
+
+		 
 			 local hint = game:GetService("ReplicatedStorage").Objects.ItemHint:Clone()
 			  local hint2 = game:GetService("ReplicatedStorage").Objects.ItemHint2:Clone()
 hint.Parent = v
